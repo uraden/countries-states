@@ -92,7 +92,7 @@ Node 18+ and npm 9+ recommended.
 
 3) Build & start (production-like)
    npm run build
-   npm run start     # serves the built app
+   npm run start    
 
 4) Local development
    npm run dev
