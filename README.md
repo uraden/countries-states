@@ -30,11 +30,13 @@ A small, production-quality React app that displays two dropdowns (Country → S
 src/
   app/
     App.tsx              # App shell (providers + routes)
+    App.css              # App styling
     routes.tsx           # Route config: "/" and "/summary"
   pages/
     HomePage.tsx         # Country & State flow
     SummaryPage.tsx      # Review selection screen
   components/
+    ConfigGate.tsx       # Gate to show user to add apis
     CountrySelect.tsx    # Country dropdown/search
     StateSelect.tsx      # State dropdown/search (depends on country)
     Field.tsx            # Label + hint + error wrapper
@@ -112,8 +114,6 @@ Node 18+ and npm 9+ recommended.
 
 - Unit/Integration via Vitest + Testing Library
   - npm run test        (watch)
-  - npm run test:run    (single run)
-  - npm run test:ui     (optional visual runner)
 - Network is mocked with MSW; tests do not hit the real API.
 - Examples include:
   - Home flow: choose country → load states → enable submit
@@ -124,7 +124,6 @@ Node 18+ and npm 9+ recommended.
 - Proper labels for controls (<label htmlFor> + aria-*).
 - Keyboard operable; State control disabled until a Country is chosen.
 - Inline validation and retryable error banners.
-- Loading skeletons/spinners.
 - Mobile-first responsive layout (Tailwind).
 
 ## Error Handling
@@ -133,12 +132,6 @@ Node 18+ and npm 9+ recommended.
 - React Query retries (configurable), with error banners and a Retry button.
 - Reset state when Country changes (no default State selection).
 
-## Design & Architecture Notes
-
-- SPA with a simple router for the optional summary screen (meets the “do more” suggestion).
-- React Query centralizes data fetching/caching and simplifies loading/error states.
-- Feature-oriented folders for maintainability.
-- Typed env loader to avoid missing config at runtime.
 
 ## Git & Repo Hygiene
 
@@ -150,14 +143,3 @@ Node 18+ and npm 9+ recommended.
 
 - Verified against Chrome current stable.
 
-## Future Enhancements
-
-- Virtualized combobox for long lists
-- Persist selections (localStorage) and shareable URLs
-- i18n (e.g., react-intl)
-- CI workflow (GitHub Actions): lint, typecheck, test, build
-- E2E smoke (Playwright) for the main happy path
-
-## License
-
-MIT (or specify as needed)
